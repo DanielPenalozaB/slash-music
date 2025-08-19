@@ -1,8 +1,5 @@
-package com.slash.music.service;
+package com.slash.music.dto;
 
-import com.slash.music.dto.UserCreateDTO;
-import com.slash.music.dto.UserResponseDTO;
-import com.slash.music.dto.UserUpdateDTO;
 import com.slash.music.model.User;
 import org.springframework.stereotype.Component;
 

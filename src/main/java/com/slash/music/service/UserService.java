@@ -1,6 +1,7 @@
 package com.slash.music.service;
 
 import com.slash.music.dto.UserCreateDTO;
+import com.slash.music.dto.UserMapper;
 import com.slash.music.dto.UserResponseDTO;
 import com.slash.music.dto.UserUpdateDTO;
 import com.slash.music.exception.ResourceNotFoundException;
