@@ -124,7 +124,7 @@ La API está documentada con **Swagger/OpenAPI.** Una vez ejecutada la aplicaci�
 - **develop** - Desarrollo principal
 - **release/*** - Preparación de releases
 - **hotfix/*** - Correcciones urgentes
-- **feat/*** - Nuevas funcionalidades
+- **feature/*** - Nuevas funcionalidades
 
 ### Conventional Commits
 - **Formato:**
@@ -152,7 +152,7 @@ chore: - Cambios en build, dependencias, etc.
 # Crear rama desde develop
 git checkout develop
 git pull origin develop
-git checkout -b feat/user-authentication
+git checkout -b feature/user-authentication
 
 # Trabajar en la feature...
 git add .
@@ -162,8 +162,8 @@ git commit -m "test(auth): add unit tests for auth service"
 
 # Finalizar feature
 git checkout develop
-git merge --no-ff feat/user-authentication
-git branch -d feat/user-authentication
+git merge --no-ff feature/user-authentication
+git branch -d feature/user-authentication
 ```
 
 2. Rama Hotfix (corrección urgente)

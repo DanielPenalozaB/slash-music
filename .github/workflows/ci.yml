@@ -70,8 +70,8 @@ jobs:
       uses: EnricoMi/publish-unit-test-result-action@v2
       if: always()
       with:
-        files: |
-          build/test-results/**/*.xml
+        files: build/test-results/**/*.xml
+        comment_mode: off
 
     # BUILD CHECK: Build the application (creates JAR)
     - name: Build application
