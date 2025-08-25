@@ -12,19 +12,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserUpdateDTO {
-    @Email(message = "Email should be valid")
-    @Size(max = 100, message = "Email must be less than 100 characters")
-    private String email;
+  @Email(message = "Email should be valid")
+  @Size(max = 100, message = "Email must be less than 100 characters")
+  private String email;
 
-    @Size(max = 50, message = "Name must be less than 50 characters")
-    private String name;
+  @Size(max = 50, message = "Name must be less than 50 characters")
+  private String name;
 
-    @Size(min = 6, message = "Password must be at least 6 characters")
-    private String password;
+  @Size(min = 6, message = "Password must be at least 6 characters")
+  private String password;
 
-    private UserRole role;
+  private UserRole role;
 
-    private UserStatus status;
+  private UserStatus status;
 
-    private String profileImageUrl;
+  private String profileImageUrl;
 }

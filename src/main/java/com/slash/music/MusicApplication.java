@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class MusicApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MusicApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(MusicApplication.class, args);
+  }
 
 }

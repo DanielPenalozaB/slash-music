@@ -18,39 +18,39 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Album {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Column(nullable = false, length = 100)
-    private String title;
+  @Column(nullable = false, length = 100)
+  private String title;
 
-    @Column(length = 500)
-    private String description;
+  @Column(length = 500)
+  private String description;
 
-    @Column(name = "release_date")
-    private LocalDate releaseDate;
+  @Column(name = "release_date")
+  private LocalDate releaseDate;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Genre genre;
+  @Enumerated(EnumType.STRING)
+  @Column(nullable = false)
+  private Genre genre;
 
-    @CreationTimestamp
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
+  @CreationTimestamp
+  @Column(name = "created_at", nullable = false, updatable = false)
+  private LocalDateTime createdAt;
 
-    @UpdateTimestamp
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
+  @UpdateTimestamp
+  @Column(name = "updated_at")
+  private LocalDateTime updatedAt;
 
-    // Relationships
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "artist_id", nullable = false)
-    private Artist artist;
+  // Relationships
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "artist_id", nullable = false)
+  private Artist artist;
 
-    @OneToMany(mappedBy = "album", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Song> songs = new ArrayList<>();
+  @OneToMany(mappedBy = "album", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private List<Song> songs = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "favoriteAlbums")
-    private List<User> favoritedByUsers = new ArrayList<>();
+  @ManyToMany(mappedBy = "favoriteAlbums")
+  private List<User> favoritedByUsers = new ArrayList<>();
 }

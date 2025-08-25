@@ -56,6 +56,13 @@ tasks.named('test') {
 	finalizedBy jacocoTestReport
 }
 
+tasks.withType(Checkstyle) {
+    reports {
+        xml.required = false
+        html.required = true
+    }
+}
+
 // Checkstyle configuration
 checkstyle {
 	toolVersion = '10.12.4'

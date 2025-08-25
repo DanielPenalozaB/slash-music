@@ -1,4 +1,5 @@
 package com.slash.music.dto;
+
 import com.slash.music.model.UserRole;
 import com.slash.music.model.UserStatus;
 import lombok.AllArgsConstructor;
@@ -11,12 +12,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserResponseDTO {
-    private Long id;
-    private String email;
-    private String name;
-    private UserRole role;
-    private UserStatus status;
-    private String profileImageUrl;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+  private Long id;
+  private String email;
+  private String name;
+  private UserRole role;
+  private UserStatus status;
+  private String profileImageUrl;
+  private LocalDateTime createdAt;
+  private LocalDateTime updatedAt;
 }

@@ -12,30 +12,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "songs")
+@Table(name = "playlists")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Song {
+public class Playlist {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @Column(nullable = false, length = 100)
-  private String title;
+  private String name;
 
-  @Column(name = "duration_seconds", nullable = false)
-  private Integer durationSeconds;
+  @Column(length = 500)
+  private String description;
 
-  @Column(name = "file_url", nullable = false)
-  private String fileUrl;
-
-  @Enumerated(EnumType.STRING)
-  @Column(nullable = false)
-  private Genre genre;
-
-  @Column(name = "play_count", nullable = false)
-  private Long playCount = 0L;
+  @Column(name = "is_public", nullable = false)
+  private Boolean isPublic = true;
 
   @CreationTimestamp
   @Column(name = "created_at", nullable = false, updatable = false)
@@ -47,13 +40,14 @@ public class Song {
 
   // Relationships
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "artist_id", nullable = false)
-  private Artist artist;
+  @JoinColumn(name = "user_id", nullable = false)
+  private User user;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "album_id")
-  private Album album;
-
-  @ManyToMany(mappedBy = "favoriteSongs")
-  private List<User> favoritedByUsers = new ArrayList<>();
+  @ManyToMany
+  @JoinTable(
+    name = "playlist_songs",
+    joinColumns = @JoinColumn(name = "playlist_id"),
+    inverseJoinColumns = @JoinColumn(name = "song_id")
+  )
+  private List<Song> songs = new ArrayList<>();
 }
