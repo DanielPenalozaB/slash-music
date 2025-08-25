@@ -63,7 +63,10 @@ public class AuthController {
     return ResponseEntity.ok(response);
   }
 
-  @Operation(summary = "Refresh JWT token", description = "Generates new access and refresh tokens using a valid refresh token")
+  @Operation(
+    summary = "Refresh JWT token",
+    description = "Generates new access and refresh tokens using a valid refresh token"
+  )
   @ApiResponses(value = {
       @ApiResponse(responseCode = "200",
         description = "Token refreshed successfully",

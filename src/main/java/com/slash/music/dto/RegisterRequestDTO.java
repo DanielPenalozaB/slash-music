@@ -1,8 +1,5 @@
 package com.slash.music.dto;
 
-import com.slash.music.model.UserRole;
-import com.slash.music.model.UserStatus;
-
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

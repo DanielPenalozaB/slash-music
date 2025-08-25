@@ -63,8 +63,14 @@ public class UserController {
 
   @Operation(summary = "Get current user", description = "Retrieves the current authenticated user")
   @ApiResponses(value = {
-      @ApiResponse(responseCode = "200", description = "User found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserResponseDTO.class))),
-      @ApiResponse(responseCode = "401", description = "User not authenticated")
+    @ApiResponse(
+      responseCode = "200",
+      description = "User found",
+      content = @Content(
+        mediaType = "application/json",
+        schema = @Schema(implementation = UserResponseDTO.class)
+        )),
+    @ApiResponse(responseCode = "401", description = "User not authenticated")
   })
   @GetMapping("/me")
   public ResponseEntity<UserResponseDTO> getCurrentUser() {
@@ -128,10 +134,14 @@ public class UserController {
   @PreAuthorize("hasRole('ADMIN')")
   @GetMapping
   public ResponseEntity<Page<UserResponseDTO>> getAllUsers(
-    @Parameter(description = "Page number (0-based)", example = "0") @RequestParam(defaultValue = "0") int page,
-    @Parameter(description = "Page size", example = "10") @RequestParam(defaultValue = "10") int size,
-    @Parameter(description = "Sort by field", example = "createdAt") @RequestParam(defaultValue = "createdAt") String sortBy,
-    @Parameter(description = "Sort direction", example = "desc") @RequestParam(defaultValue = "desc") String sortDir
+    @Parameter(description = "Page number (0-based)", example = "0")
+    @RequestParam(defaultValue = "0") int page,
+    @Parameter(description = "Page size", example = "10")
+    @RequestParam(defaultValue = "10") int size,
+    @Parameter(description = "Sort by field", example = "createdAt")
+    @RequestParam(defaultValue = "createdAt") String sortBy,
+    @Parameter(description = "Sort direction", example = "desc")
+    @RequestParam(defaultValue = "desc") String sortDir
   ) {
     log.debug("Fetching all users - page: {}, size: {}, sortBy: {}, sortDir: {}",
       page, size, sortBy, sortDir);
@@ -276,7 +286,10 @@ public class UserController {
     return ResponseEntity.ok(users);
   }
 
-  @Operation(summary = "Update user status", description = "Updates a user's status (activate, deactivate, ban, etc.) (Admin only)")
+  @Operation(
+    summary = "Update user status",
+    description = "Updates a user's status (activate, deactivate, ban, etc.) (Admin only)"
+  )
   @ApiResponses(value = {
     @ApiResponse(
       responseCode = "200",

@@ -90,9 +90,9 @@ public class UserService {
 
     // Check for duplicate email (excluding current user)
     if (
-      updateDTO.getEmail() != null
-      && !updateDTO.getEmail().equals(existingUser.getEmail())
-      && userRepository.existsByEmail(updateDTO.getEmail())
+      updateDTO.getEmail() != null &&
+        !updateDTO.getEmail().equals(existingUser.getEmail()) &&
+      userRepository.existsByEmail(updateDTO.getEmail())
     ) {
       throw new DuplicateResourceException("Email already exists: " + updateDTO.getEmail());
     }
