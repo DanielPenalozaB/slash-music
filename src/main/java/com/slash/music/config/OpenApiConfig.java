@@ -1,31 +1,34 @@
 package com.slash.music.config;
 
-import java.util.List;
-
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.info.License;
-import io.swagger.v3.oas.models.servers.Server;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.info.License;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
+import io.swagger.v3.oas.annotations.servers.Server;
 
 @Configuration
-public class OpenApiConfig {
-
-  @Bean
-  public OpenAPI customOpenAPI() {
-    return new OpenAPI()
-        .info(new Info()
-            .title("Slash Music API")
-            .description("REST API for Slash Music streaming application")
-            .version("1.0.0")
-            .license(new License()
-                .name("MIT License")
-                .url("https://opensource.org/licenses/MIT")))
-        .servers(List.of(
-            new Server()
-                .url("http://localhost:8080")
-                .description("Development server")));
+@OpenAPIDefinition(
+  info = @Info(
+    title = "Slash Music API",
+    description = "REST API for Slash Music streaming application",
+    version = "1.0.0",
+    license = @License(
+      name = "MIT License",
+      url = "https://opensource.org/licenses/MIT"
+    )
+  ),
+  servers = {
+    @Server(url = "http://localhost:8080", description = "Development server")
   }
-}
+)
+@SecurityScheme(
+  name = "bearerAuth",
+  type = SecuritySchemeType.HTTP,
+  bearerFormat = "JWT",
+  scheme = "bearer",
+  description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\""
+)
+public class OpenApiConfig { }

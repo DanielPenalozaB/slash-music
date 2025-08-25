@@ -86,13 +86,15 @@ public class UserService {
     log.info("Updating user with ID: {}", id);
 
     User existingUser = userRepository.findById(id)
-        .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + id));
+      .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + id));
 
     // Check for duplicate email (excluding current user)
-    if (updateDTO.getEmail() != null && !updateDTO.getEmail().equals(existingUser.getEmail())) {
-      if (userRepository.existsByEmail(updateDTO.getEmail())) {
-        throw new DuplicateResourceException("Email already exists: " + updateDTO.getEmail());
-      }
+    if (
+      updateDTO.getEmail() != null
+      && !updateDTO.getEmail().equals(existingUser.getEmail())
+      && userRepository.existsByEmail(updateDTO.getEmail())
+    ) {
+      throw new DuplicateResourceException("Email already exists: " + updateDTO.getEmail());
     }
 
     // Check for duplicate username (excluding current user)
@@ -137,7 +139,7 @@ public class UserService {
     log.debug("Fetching user with email: {}", email);
 
     User user = userRepository.findByEmail(email)
-        .orElseThrow(() -> new ResourceNotFoundException("User not found with email: " + email));
+      .orElseThrow(() -> new ResourceNotFoundException("User not found with email: " + email));
 
     return userMapper.toResponseDTO(user);
   }
@@ -150,7 +152,7 @@ public class UserService {
     log.debug("Fetching user with username: {}", username);
 
     User user = userRepository.findByName(username)
-        .orElseThrow(() -> new ResourceNotFoundException("User not found with username: " + username));
+      .orElseThrow(() -> new ResourceNotFoundException("User not found with username: " + username));
 
     return userMapper.toResponseDTO(user);
   }
@@ -175,8 +177,8 @@ public class UserService {
 
     List<User> users = userRepository.findByRole(role);
     return users.stream()
-        .map(userMapper::toResponseDTO)
-        .toList();
+      .map(userMapper::toResponseDTO)
+      .toList();
   }
 
   /**
@@ -188,8 +190,8 @@ public class UserService {
 
     List<User> users = userRepository.findByStatus(status);
     return users.stream()
-        .map(userMapper::toResponseDTO)
-        .toList();
+      .map(userMapper::toResponseDTO)
+      .toList();
   }
 
   /**
@@ -199,7 +201,7 @@ public class UserService {
     log.info("Updating status for user with ID: {} to {}", id, status);
 
     User user = userRepository.findById(id)
-        .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + id));
+      .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + id));
 
     user.setStatus(status);
     User updatedUser = userRepository.save(user);
