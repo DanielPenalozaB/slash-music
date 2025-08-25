@@ -91,9 +91,8 @@ jobs:
     # BUILD CHECK: Basic smoke test - check if app starts
     - name: Verify JAR creation
       run: |
-        JAR_FILE=$(ls build/libs/*.jar 2>/dev/null | head -n 1)
-        if [ -n "$JAR_FILE" ]; then
-          echo "✅ JAR file successfully created: $JAR_FILE"
+        if find build/libs -name "*.jar" | grep -q .; then
+          echo "✅ JAR file successfully created"
           ls -la build/libs/
         else
           echo "❌ JAR file not found"
