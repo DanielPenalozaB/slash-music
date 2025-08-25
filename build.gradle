@@ -85,6 +85,7 @@ spotbugsMain {
 			outputLocation = file("$buildDir/reports/spotbugs/main/spotbugs.html")
 		}
 	}
+    excludeFilter = file("${project.rootDir}/spotbugs-exclude.xml")
 }
 
 // JaCoCo configuration for code coverage
