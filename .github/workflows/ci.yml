@@ -91,16 +91,18 @@ jobs:
     # BUILD CHECK: Basic smoke test - check if app starts
     - name: Smoke test - Application startup
       run: |
-        timeout 30s java -jar build/libs/*.jar --spring.datasource.url=jdbc:h2:mem:testdb --spring.jpa.hibernate.ddl-auto=create-drop --spring.flyway.enabled=false &
-        APP_PID=$!
-        sleep 10
-        if kill -0 $APP_PID 2>/dev/null; then
+      APP_JAR=$(ls build/libs/*-SNAPSHOT.jar | grep -v 'plain' | head -n 1)
+      timeout 30s java -jar "$APP_JAR" --spring.datasource.url=jdbc:h2:mem:testdb --spring.jpa.hibernate.ddl-auto=create-drop --spring.flyway.enabled=false &
+      APP_PID=$!
+      sleep 10
+      if kill -0 $APP_PID 2>/dev/null; then
           echo "✅ Application started successfully"
           kill $APP_PID
-        else
+      else
           echo "❌ Application failed to start"
           exit 1
-        fi
+      fi
+
 
   code-quality:
     runs-on: ubuntu-latest
