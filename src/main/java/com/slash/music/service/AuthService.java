@@ -1,15 +1,5 @@
 package com.slash.music.service;
 
-import com.slash.music.dto.*;
-import com.slash.music.exception.ResourceNotFoundException;
-import com.slash.music.exception.DuplicateResourceException;
-import com.slash.music.model.User;
-import com.slash.music.model.UserRole;
-import com.slash.music.model.UserStatus;
-import com.slash.music.repository.UserRepository;
-import com.slash.music.security.CustomUserDetails;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,6 +9,24 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.slash.music.dto.AuthResponse;
+import com.slash.music.dto.ChangePasswordRequestDTO;
+import com.slash.music.dto.LoginRequestDTO;
+import com.slash.music.dto.RefreshTokenRequestDTO;
+import com.slash.music.dto.RegisterRequestDTO;
+import com.slash.music.dto.UserMapper;
+import com.slash.music.dto.UserResponseDTO;
+import com.slash.music.exception.DuplicateResourceException;
+import com.slash.music.exception.ResourceNotFoundException;
+import com.slash.music.model.User;
+import com.slash.music.model.UserRole;
+import com.slash.music.model.UserStatus;
+import com.slash.music.repository.UserRepository;
+import com.slash.music.security.CustomUserDetails;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor

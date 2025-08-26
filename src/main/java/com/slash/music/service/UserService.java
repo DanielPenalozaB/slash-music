@@ -1,24 +1,26 @@
 package com.slash.music.service;
 
-import com.slash.music.dto.UserCreateDTO;
-import com.slash.music.dto.UserMapper;
-import com.slash.music.dto.UserResponseDTO;
-import com.slash.music.dto.UserUpdateDTO;
-import com.slash.music.exception.ResourceNotFoundException;
-import com.slash.music.exception.DuplicateResourceException;
-import com.slash.music.model.User;
-import com.slash.music.model.UserRole;
-import com.slash.music.model.UserStatus;
-import com.slash.music.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.slash.music.dto.UserCreateDTO;
+import com.slash.music.dto.UserMapper;
+import com.slash.music.dto.UserResponseDTO;
+import com.slash.music.dto.UserUpdateDTO;
+import com.slash.music.exception.DuplicateResourceException;
+import com.slash.music.exception.ResourceNotFoundException;
+import com.slash.music.model.User;
+import com.slash.music.model.UserRole;
+import com.slash.music.model.UserStatus;
+import com.slash.music.repository.UserRepository;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
