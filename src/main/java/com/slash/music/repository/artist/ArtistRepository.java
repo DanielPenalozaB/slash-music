@@ -1,5 +1,6 @@
 package com.slash.music.repository.artist;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -37,4 +38,17 @@ public interface ArtistRepository extends JpaRepository<Artist, Long> {
      */
     Optional<Artist> findByName(String name);
 
+    /**
+     * Find artist by search term by name
+     * @param name Artist name
+     * @return Artist
+     */
+    Optional<Artist> findByNameContainingIgnoreCase(String name);
+
+    /**
+     * Find a list of artist by similar name
+     * @param name Artist name
+     * @return List<Artist>
+     */
+    List<Artist> findsByNameContaining(String name);
 }

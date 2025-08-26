@@ -1,5 +1,8 @@
 package com.slash.music.service.artist;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -114,5 +117,19 @@ public class ArtistService {
                 .orElseThrow(() -> new ResourceNotFoundException("Artist not found with name: " + name));
 
         return artistMapper.toResponseDTO(artist);
+    }
+
+    /**
+     * Get artist by search term by name
+     * @param name Artist name
+     * @return ArtistResponseDTO
+     */
+    public List<ArtistResponseDTO> getArtistBySearchTerm(String name) {
+        log.debug("Fetching artist with search term: {}", name);
+
+        List<Artist> artists = artistRepository.findsByNameContaining(name);
+        return artists.stream()
+                .map(artistMapper::toResponseDTO)
+                .collect(Collectors.toList());
     }
 }
