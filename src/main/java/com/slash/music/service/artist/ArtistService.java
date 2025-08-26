@@ -127,7 +127,7 @@ public class ArtistService {
     public List<ArtistResponseDTO> getArtistBySearchTerm(String name) {
         log.debug("Fetching artist with search term: {}", name);
 
-        List<Artist> artists = artistRepository.findsByNameContaining(name);
+        List<Artist> artists = artistRepository.findByNameContaining(name);
         return artists.stream()
                 .map(artistMapper::toResponseDTO)
                 .collect(Collectors.toList());
