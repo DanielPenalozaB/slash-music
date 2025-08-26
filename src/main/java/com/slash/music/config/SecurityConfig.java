@@ -78,6 +78,10 @@ public class SecurityConfig {
         // General user endpoints - require authentication
         .requestMatchers("/api/v1/users/**").authenticated()
 
+        // Artist endpoints - temporarily public for testing
+        .requestMatchers("/api/v1/artists/**").permitAll()
+        .requestMatchers("/api/v1/artists/search/**").permitAll()
+
         // All other endpoints require authentication
         .anyRequest().authenticated())
       .authenticationProvider(authenticationProvider())

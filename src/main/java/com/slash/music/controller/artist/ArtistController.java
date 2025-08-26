@@ -3,7 +3,9 @@ package com.slash.music.controller.artist;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.slash.music.dto.artist.ArtistCreateDTO;
@@ -98,12 +101,15 @@ public class ArtistController {
 
     /**
      * Get all artists
-     * @param pageable Pageable
+     * @param page Page number (0-based)
+     * @param size Page size
+     * @param sortBy Field to sort by
+     * @param sortDirection Sort direction (asc or desc)
      * @return Page<ArtistResponseDTO>
      * @message [200] Artists retrieved successfully
      * @message [404] Artists not found
      */
-    @Operation(summary = "Get all artists", description = "Retrieves all artists")
+    @Operation(summary = "Get all artists", description = "Retrieves all artists with pagination")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Artists retrieved successfully",
             content = @Content(mediaType = "application/json",
@@ -113,8 +119,20 @@ public class ArtistController {
                 schema = @Schema(implementation = ErrorResponse.class)))
     })  
     @GetMapping("/all")
-    public ResponseEntity<Page<ArtistResponseDTO>> getAllArtists(Pageable pageable) {
-        log.info("Fetching all artists");
+    public ResponseEntity<Page<ArtistResponseDTO>> getAllArtists(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "asc") String sortDirection) {
+        
+        log.info("Fetching all artists - page: {}, size: {}, sortBy: {}, direction: {}", 
+                 page, size, sortBy, sortDirection);
+        
+        Sort sort = sortDirection.equalsIgnoreCase("desc") 
+            ? Sort.by(sortBy).descending() 
+            : Sort.by(sortBy).ascending();
+        
+        Pageable pageable = PageRequest.of(page, size, sort);
         Page<ArtistResponseDTO> response = artistService.getAllArtists(pageable);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
