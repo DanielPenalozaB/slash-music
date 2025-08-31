@@ -101,8 +101,10 @@ public class ArtistService {
    * Delete an artist
    * @param id Artist ID
    */
-  public void deleteArtist(Long id) {
     log.debug("Deleting artist with ID: {}", id);
+    Artist artist = artistRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Artist not found with ID: " + id));
+    artistRepository.delete(artist);
   }
 
   /**
