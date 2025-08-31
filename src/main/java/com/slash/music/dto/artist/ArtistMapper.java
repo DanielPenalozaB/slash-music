@@ -21,69 +21,69 @@ public class ArtistMapper {
      * @param dto ArtistCreateDTO
      * @return Artist entity
      */
-    public Artist toEntity(ArtistCreateDTO dto) {
-        if (dto == null) {
-            return null;
-        }
-
-        Artist artist = new Artist();
-        artist.setName(dto.getName());
-        artist.setBiography(dto.getBiography());
-        artist.setGenre(dto.getGenre());
-        artist.setProfileImageUrl(dto.getProfileImageUrl());
-        artist.setVerified(dto.getVerified());
-        return artist;
+  public Artist toEntity(ArtistCreateDTO dto) {
+    if (dto == null) {
+      return null;
     }
+
+    Artist artist = new Artist();
+    artist.setName(dto.getName());
+    artist.setBiography(dto.getBiography());
+    artist.setGenre(dto.getGenre());
+    artist.setProfileImageUrl(dto.getProfileImageUrl());
+    artist.setVerified(dto.getVerified());
+    return artist;
+  }
 
     /**
      * Convert Artist entity to ArtistResponseDTO
      * @param artist Artist entity
      * @return ArtistResponseDTO
      */
-    public ArtistResponseDTO toResponseDTO(Artist artist) {
-        if (artist == null) {
-            return null;
-        }
-
-        ArtistResponseDTO dto = new ArtistResponseDTO();
-
-        dto.setId(artist.getId());
-        dto.setName(artist.getName());
-        dto.setBiography(artist.getBiography());
-        dto.setGenre(artist.getGenre());
-        dto.setProfileImageUrl(artist.getProfileImageUrl());
-        dto.setVerified(artist.getVerified());
-        return dto;
+  public ArtistResponseDTO toResponseDTO(Artist artist) {
+    if (artist == null) {
+      return null;
     }
+
+    ArtistResponseDTO dto = new ArtistResponseDTO();
+
+    dto.setId(artist.getId());
+    dto.setName(artist.getName());
+    dto.setBiography(artist.getBiography());
+    dto.setGenre(artist.getGenre());
+    dto.setProfileImageUrl(artist.getProfileImageUrl());
+    dto.setVerified(artist.getVerified());
+    return dto;
+  }
 
     /**
      * Update Artist entity from ArtistUpdateDTO
      * @param dto ArtistUpdateDTO
      * @param artist Artist entity
      */
-    public void updateEntityFromDTO(ArtistUpdateDTO dto, Artist artist) {
-        if (dto == null || artist == null) {
-            return;
-        }
-
-        if (dto.getName() != null) {
-            artist.setName(dto.getName());
-        }
-
-        if (dto.getBiography() != null) {
-            artist.setBiography(dto.getBiography());
-        }
-
-        if (dto.getGenre() != null) {
-            artist.setGenre(dto.getGenre());
-        }
-
-        if (dto.getProfileImageUrl() != null) {
-            artist.setProfileImageUrl(dto.getProfileImageUrl());
-        }
-        
-        if (dto.getVerified() != null) {
-            artist.setVerified(dto.getVerified());
-        }
+  public void updateEntityFromDTO(ArtistUpdateDTO dto, Artist artist) {
+    if (dto == null || artist == null) {
+      return;
     }
+
+    if (dto.getName() != null) {
+      artist.setName(dto.getName());
+    }
+
+    if (dto.getBiography() != null) {
+      artist.setBiography(dto.getBiography());
+    }
+
+    if (dto.getGenre() != null) {
+      artist.setGenre(dto.getGenre());
+    }
+
+    if (dto.getProfileImageUrl() != null) {
+      artist.setProfileImageUrl(dto.getProfileImageUrl());
+    }
+        
+    if (dto.getVerified() != null) {
+      artist.setVerified(dto.getVerified());
+    }
+  }
 }

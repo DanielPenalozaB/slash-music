@@ -19,12 +19,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ArtistResponseDTO {
-    private Long id;
-    private String name;
-    private String biography;
-    private Genre genre;
-    private String profileImageUrl;
-    private Boolean verified;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+  private Long id;
+  private String name;
+  private String biography;
+  private Genre genre;
+  private String profileImageUrl;
+  private Boolean verified;
+  private LocalDateTime createdAt;
+  private LocalDateTime updatedAt;
 }

@@ -21,18 +21,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ArtistCreateDTO {
-    @NotBlank(message = "Name is required")
-    @Size(max = 30, message = "Name must be less than 30 characters")
-    private String name;
+  @NotBlank(message = "Name is required")
+  @Size(max = 30, message = "Name must be less than 30 characters")
+  private String name;
 
-    @NotBlank(message = "Biography is required")
-    @Size(max = 200, message = "Biography must be less than 200 characters")
-    private String biography;
+  @NotBlank(message = "Biography is required")
+  @Size(max = 200, message = "Biography must be less than 200 characters")
+  private String biography;
 
-    @NotNull(message = "Genre is required")
-    private Genre genre;
+  @NotNull(message = "Genre is required")
+  private Genre genre;
 
-    private String profileImageUrl;
+  private String profileImageUrl;
 
-    private Boolean verified = false;
+  private Boolean verified = false;
 }

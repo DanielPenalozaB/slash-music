@@ -17,9 +17,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ArtistUpdateDTO {
-    private String name;
-    private String biography;
-    private Genre genre;
-    private String profileImageUrl;
-    private Boolean verified;
+  private String name;
+  private String biography;
+  private Genre genre;
+  private String profileImageUrl;
+  private Boolean verified;
 }
