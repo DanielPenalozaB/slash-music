@@ -53,6 +53,8 @@ public class ArtistMapper {
     dto.setGenre(artist.getGenre());
     dto.setProfileImageUrl(artist.getProfileImageUrl());
     dto.setVerified(artist.getVerified());
+    dto.setCreatedAt(artist.getCreatedAt());
+    dto.setUpdatedAt(artist.getUpdatedAt());
     return dto;
   }
 
