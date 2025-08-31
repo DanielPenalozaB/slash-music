@@ -101,6 +101,7 @@ public class ArtistService {
    * Delete an artist
    * @param id Artist ID
    */
+  public void deleteArtist(Long id) {
     log.debug("Deleting artist with ID: {}", id);
     Artist artist = artistRepository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Artist not found with ID: " + id));
@@ -124,7 +125,7 @@ public class ArtistService {
   /**
    * Get artist by search term by name
    * @param name Artist name
-   * @return ArtistResponseDTO
+   * @return List<ArtistResponseDTO>
    */
   public List<ArtistResponseDTO> getArtistBySearchTerm(String name) {
     log.debug("Fetching artist with search term: {}", name);
