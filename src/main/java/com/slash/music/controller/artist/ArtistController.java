@@ -69,7 +69,7 @@ public class ArtistController {
           content = @Content(mediaType = "application/json",
               schema = @Schema(implementation = ErrorResponse.class)))
   })
-  @PostMapping("/create")
+  @PostMapping
   public ResponseEntity<ArtistResponseDTO> createArtist(@RequestBody ArtistCreateDTO createDTO) {
     log.info("Creating new artist with name: {}", createDTO.getName());
     ArtistResponseDTO response = artistService.createArtist(createDTO);
