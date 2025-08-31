@@ -14,21 +14,8 @@ permissions:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-
-    services:
-      postgres:
-        image: postgres:15
-        env:
-          POSTGRES_DB: slash_db
-          POSTGRES_USER: slash_db_user
-          POSTGRES_PASSWORD: slash_db_password
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
+    
+    # Note: Tests use H2 in-memory database, so no PostgreSQL service needed
 
     steps:
     - name: Checkout code
@@ -59,11 +46,9 @@ jobs:
 
     # BUILD CHECK: Run all tests
     - name: Run tests
-      run: ./gradlew test
+      run: ./gradlew test --info
       env:
-        SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/slash_db
-        SPRING_DATASOURCE_USERNAME: slash_db_user
-        SPRING_DATASOURCE_PASSWORD: slash_db_password
+        SPRING_PROFILES_ACTIVE: test
 
     # BUILD CHECK: Generate test report
     - name: Publish test results
@@ -75,10 +60,10 @@ jobs:
 
     # BUILD CHECK: Build the application (creates JAR)
     - name: Build application
-      run: ./gradlew build -x test
+      run: ./gradlew build -x test -x spotbugsMain
 
     # BUILD CHECK: Verify JAR was created and is valid
-    - name: Verify JAR creation
+    - name: List build artifacts
       run: |
         echo "Checking for JAR files in build/libs/"
         ls -la build/libs/ || echo "❌ No JARs found"
@@ -122,17 +107,16 @@ jobs:
     - name: Make gradlew executable
       run: chmod +x ./gradlew
 
-    # CODE QUALITY CHECK: Run Checkstyle
+    # CODE QUALITY CHECK: Run Checkstyle (fail fast on style violations)
     - name: Run Checkstyle
       run: ./gradlew checkstyleMain checkstyleTest
-      continue-on-error: true
 
-    # CODE QUALITY CHECK: Run SpotBugs
+    # CODE QUALITY CHECK: Run SpotBugs (allow to fail, report issues)
     - name: Run SpotBugs
       run: ./gradlew spotbugsMain
       continue-on-error: true
 
-    # SECURITY CHECK: Dependency vulnerability scan
+    # SECURITY CHECK: Dependency vulnerability scan (allow to fail, report issues)
     - name: Run dependency check
       run: ./gradlew dependencyCheckAnalyze
       continue-on-error: true
