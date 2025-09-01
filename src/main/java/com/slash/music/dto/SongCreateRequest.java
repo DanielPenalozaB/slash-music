@@ -1,12 +1,13 @@
 package com.slash.music.dto;
+
+import com.slash.music.model.Genre;
 import jakarta.validation.constraints.*;
 
 public class SongCreateRequest {
-     @NotBlank public String title;
-  @NotNull @Positive public Integer duration; // segundos
-
-  // Relación por IDs (ajusta si en tu modelo usas otro tipo)
-  public Long artistId;   // opcional u obligatorio según tu entidad
-  public Long albumId;    // opcional
-  public Long genreId;    // opcional
+  @NotBlank public String title;
+  @NotNull  @Positive public Integer durationSeconds;
+  @NotBlank public String fileUrl;
+  @NotNull  public Genre genre;
+  @NotNull  @Positive public Long artistId;   // required
+  @Positive public Long albumId;             // optional
 }

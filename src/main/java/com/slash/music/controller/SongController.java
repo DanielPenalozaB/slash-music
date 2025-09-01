@@ -22,6 +22,20 @@ import org.springframework.web.bind.annotation.*;
 
 public class SongController {
 
+/**
+ * REST controller exposing CRUD and search endpoints for Songs.
+ * Swagger security is documented via @SecurityRequirement; see OpenApiConfig for bearer scheme.
+ *
+ * Endpoints:
+ *  - POST   /api/v1/songs
+ *  - GET    /api/v1/songs
+ *  - GET    /api/v1/songs/{id}
+ *  - PATCH  /api/v1/songs/{id}
+ *  - DELETE /api/v1/songs/{id}
+ *
+ * @author Miguel David Palencia
+ */
+
     private SongService songService;
 
     public SongController(SongService songService) {

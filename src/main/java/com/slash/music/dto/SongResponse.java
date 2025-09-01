@@ -1,16 +1,21 @@
 package com.slash.music.dto;
 
+import com.slash.music.model.Genre;
 import java.time.LocalDateTime;
 
 public class SongResponse {
-    public Long id;
+  public Long id;
   public String title;
-  public Integer duration;
+  public Integer durationSeconds;
+  public String fileUrl;
+  public Genre genre;
+  public Long playCount;
 
-  // Devuelve IDs; si luego quieres nombres, se pueden añadir
   public Long artistId;
+  public String artistName;
+
   public Long albumId;
-  public Long genreId;
+  public String albumTitle;
 
   public LocalDateTime createdAt;
   public LocalDateTime updatedAt;
