@@ -2,21 +2,25 @@ package com.slash.music.dto;
 
 import com.slash.music.model.Genre;
 import java.time.LocalDateTime;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
 public class SongResponse {
-  public Long id;
-  public String title;
-  public Integer durationSeconds;
-  public String fileUrl;
-  public Genre genre;
-  public Long playCount;
+  private Long id;
+  private String title;
+  private Integer durationSeconds;
+  private String fileUrl;
+  private Genre genre;
+  private Long playCount;
 
-  public Long artistId;
-  public String artistName;
+  private Long artistId;
+  private String artistName;
 
-  public Long albumId;
-  public String albumTitle;
+  private Long albumId;
+  private String albumTitle;
 
-  public LocalDateTime createdAt;
-  public LocalDateTime updatedAt;
+  private LocalDateTime createdAt;
+  private LocalDateTime updatedAt;
 }
