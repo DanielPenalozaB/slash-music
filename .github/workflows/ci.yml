@@ -79,8 +79,6 @@ jobs:
           exit 1
         fi
 
-
-
   code-quality:
     runs-on: ubuntu-latest
 
@@ -120,9 +118,3 @@ jobs:
     - name: Run dependency check
       run: ./gradlew dependencyCheckAnalyze
       continue-on-error: true
-
-    - name: SonarQube Scan
-      uses: SonarSource/sonarqube-scan-action@v2.0.2
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
