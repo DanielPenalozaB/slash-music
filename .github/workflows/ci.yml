@@ -66,16 +66,16 @@ jobs:
     - name: List build artifacts
       run: |
         echo "Checking for JAR files in build/libs/"
-        ls -la build/libs/ || echo "❌ No JARs found"
+        ls -la build/libs/ || echo "No JARs found"
 
     # BUILD CHECK: Basic smoke test - check if app starts
     - name: Verify JAR creation
       run: |
         if find build/libs -name "*.jar" | grep -q .; then
-          echo "✅ JAR file successfully created"
+          echo "JAR file successfully created"
           ls -la build/libs/
         else
-          echo "❌ JAR file not found"
+          echo "JAR file not found"
           exit 1
         fi
 
@@ -120,3 +120,9 @@ jobs:
     - name: Run dependency check
       run: ./gradlew dependencyCheckAnalyze
       continue-on-error: true
+
+    - name: Run SonarQube Scanner
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
