@@ -121,8 +121,8 @@ jobs:
       run: ./gradlew dependencyCheckAnalyze
       continue-on-error: true
 
-    - name: Run SonarQube Scanner
-      uses: sonarsource/sonarcloud-github-action@master
+    - name: SonarQube Scan
+      uses: SonarSource/sonarqube-scan-action@5.3.1
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
