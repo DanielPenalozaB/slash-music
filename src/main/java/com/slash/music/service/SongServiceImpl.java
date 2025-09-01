@@ -10,8 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Default implementation of {@link SongService}.
- * Keeps comments in English (per code review).
+ * Default implementation of {@link SongService}. Keeps comments in English (per code review).
  * Provides CRUD + search with pagination.
  *
  * Author: Miguel David Palencia
@@ -50,14 +49,15 @@ public class SongServiceImpl implements SongService {
   public SongResponse create(SongCreateRequest req) {
     var artist = artistRepository.findById(req.artistId)
         // usa la firma real de tu excepción:
-        .orElseThrow(() -> new ResourceNotFoundException("Artist not found with id " + req.artistId));
+        .orElseThrow(
+            () -> new ResourceNotFoundException("Artist not found with id " + req.artistId));
     // .orElseThrow(() -> new
     // ResourceNotFoundException("Artist","id",req.artistId));
 
     Album album = null;
     if (req.albumId != null) {
-      album = albumRepository.findById(req.albumId)
-          .orElseThrow(() -> new ResourceNotFoundException("Album not found with id " + req.albumId));
+      album = albumRepository.findById(req.albumId).orElseThrow(
+          () -> new ResourceNotFoundException("Album not found with id " + req.albumId));
       // .orElseThrow(() -> new ResourceNotFoundException("Album","id",req.albumId));
     }
     var s = new Song();
@@ -113,13 +113,13 @@ public class SongServiceImpl implements SongService {
     }
 
     if (req.artistId != null) {
-      var artist = artistRepository.findById(req.artistId)
-          .orElseThrow(() -> new ResourceNotFoundException("Artist not found with id " + req.artistId));
+      var artist = artistRepository.findById(req.artistId).orElseThrow(
+          () -> new ResourceNotFoundException("Artist not found with id " + req.artistId));
       s.setArtist(artist);
     }
     if (req.albumId != null) {
-      var album = albumRepository.findById(req.albumId)
-          .orElseThrow(() -> new ResourceNotFoundException("Album not found with id " + req.albumId));
+      var album = albumRepository.findById(req.albumId).orElseThrow(
+          () -> new ResourceNotFoundException("Album not found with id " + req.albumId));
       s.setAlbum(album);
     }
 
