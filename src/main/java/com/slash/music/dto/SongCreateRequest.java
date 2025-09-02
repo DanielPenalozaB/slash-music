@@ -2,12 +2,14 @@ package com.slash.music.dto;
 
 import com.slash.music.model.Genre;
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class SongCreateRequest {
   @NotBlank
   private String title;
