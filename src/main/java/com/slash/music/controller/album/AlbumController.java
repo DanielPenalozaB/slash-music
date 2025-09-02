@@ -2,6 +2,9 @@ package com.slash.music.controller.album;
 
 import com.slash.music.model.Album;
 import com.slash.music.service.album.AlbumService;
+
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/albums")
+@SecurityRequirement(name = "bearerAuth")
 public class AlbumController {
 
   private final AlbumService albumService;
