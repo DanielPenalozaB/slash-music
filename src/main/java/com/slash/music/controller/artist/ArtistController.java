@@ -176,11 +176,19 @@ public class ArtistController {
           content = @Content(mediaType = "application/json",
               schema = @Schema(implementation = ErrorResponse.class)))
   })
+
+  /*
+   * Delete an artist
+   * @param id Artist ID
+   * @return Void
+   * @message [204] Artist deleted successfully
+   * @message [404] Artist not found
+   */
   @DeleteMapping("/{id}")
   public ResponseEntity<Void> deleteArtist(@PathVariable Long id) {
     log.info("Deleting artist with ID: {}", id);
     artistService.deleteArtist(id);
-    return new ResponseEntity<>(HttpStatus.OK);
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
 
   /**

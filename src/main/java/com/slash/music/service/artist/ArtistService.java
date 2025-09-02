@@ -92,6 +92,15 @@ public class ArtistService {
     Artist artist = artistRepository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Artist not found with ID: " + id));
 
+    // Check for duplicate name if the name is being updated
+    String newName = updateDTO.getName();
+    if (newName != null && !newName.equals(artist.getName())) {
+      boolean nameExists = artistRepository.existsByName(newName);
+      if (nameExists) {
+        throw new DuplicateResourceException("Artist already exists: " + newName);
+      }
+    }
+
     artistMapper.updateEntityFromDTO(updateDTO, artist);
     Artist updatedArtist = artistRepository.save(artist);
     return artistMapper.toResponseDTO(updatedArtist);
