@@ -3,11 +3,13 @@ package com.slash.music.dto;
 import com.slash.music.model.Genre;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class SongCreateRequest {

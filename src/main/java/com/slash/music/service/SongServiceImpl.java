@@ -26,45 +26,45 @@ public class SongServiceImpl implements SongService {
 
   private static SongResponse toResponse(Song s) {
     var r = new SongResponse();
-    r.id = s.getId();
-    r.title = s.getTitle();
-    r.durationSeconds = s.getDurationSeconds();
-    r.fileUrl = s.getFileUrl();
-    r.genre = s.getGenre();
-    r.playCount = s.getPlayCount();
+    r.setId(s.getId());
+    r.setTitle(s.getTitle());
+    r.setDurationSeconds(s.getDurationSeconds());
+    r.setFileUrl(s.getFileUrl());
+    r.setGenre(s.getGenre());
+    r.setPlayCount(s.getPlayCount());
     if (s.getArtist() != null) {
-      r.artistId = s.getArtist().getId();
-      r.artistName = s.getArtist().getName();
+      r.setArtistId(s.getArtist().getId());
+      r.setArtistName(s.getArtist().getName());
     }
     if (s.getAlbum() != null) {
-      r.albumId = s.getAlbum().getId();
-      r.albumTitle = s.getAlbum().getTitle();
+      r.setAlbumId(s.getAlbum().getId());
+      r.setAlbumTitle(s.getAlbum().getTitle());
     }
-    r.createdAt = s.getCreatedAt();
-    r.updatedAt = s.getUpdatedAt();
+    r.setCreatedAt(s.getCreatedAt());
+    r.setUpdatedAt(s.getUpdatedAt());
     return r;
   }
 
   @Override
   public SongResponse create(SongCreateRequest req) {
-    var artist = artistRepository.findById(req.artistId)
+    var artist = artistRepository.findById(req.getArtistId())
         // usa la firma real de tu excepción:
         .orElseThrow(
-            () -> new ResourceNotFoundException("Artist not found with id " + req.artistId));
+            () -> new ResourceNotFoundException("Artist not found with id " + req.getArtistId()));
     // .orElseThrow(() -> new
     // ResourceNotFoundException("Artist","id",req.artistId));
 
     Album album = null;
-    if (req.albumId != null) {
-      album = albumRepository.findById(req.albumId).orElseThrow(
-          () -> new ResourceNotFoundException("Album not found with id " + req.albumId));
+    if (req.getAlbumId() != null) {
+      album = albumRepository.findById(req.getAlbumId()).orElseThrow(
+          () -> new ResourceNotFoundException("Album not found with id " + req.getAlbumId()));
       // .orElseThrow(() -> new ResourceNotFoundException("Album","id",req.albumId));
     }
     var s = new Song();
-    s.setTitle(req.title);
-    s.setDurationSeconds(req.durationSeconds);
-    s.setFileUrl(req.fileUrl);
-    s.setGenre(req.genre);
+    s.setTitle(req.getTitle());
+    s.setDurationSeconds(req.getDurationSeconds());
+    s.setFileUrl(req.getFileUrl());
+    s.setGenre(req.getGenre());
     s.setArtist(artist);
     s.setAlbum(album);
 
@@ -99,27 +99,27 @@ public class SongServiceImpl implements SongService {
         .orElseThrow(() -> new ResourceNotFoundException("Song not found with id " + id));
     // .orElseThrow(() -> new ResourceNotFoundException("Song","id",id));
 
-    if (req.title != null) {
-      s.setTitle(req.title);
+    if (req.getTitle() != null) {
+      s.setTitle(req.getTitle());
     }
-    if (req.durationSeconds != null) {
-      s.setDurationSeconds(req.durationSeconds);
+    if (req.getDurationSeconds() != null) {
+      s.setDurationSeconds(req.getDurationSeconds());
     }
-    if (req.fileUrl != null) {
-      s.setFileUrl(req.fileUrl);
+    if (req.getFileUrl() != null) {
+      s.setFileUrl(req.getFileUrl());
     }
-    if (req.genre != null) {
-      s.setGenre(req.genre);
+    if (req.getGenre() != null) {
+      s.setGenre(req.getGenre());
     }
 
-    if (req.artistId != null) {
-      var artist = artistRepository.findById(req.artistId).orElseThrow(
-          () -> new ResourceNotFoundException("Artist not found with id " + req.artistId));
+    if (req.getArtistId() != null) {
+      var artist = artistRepository.findById(req.getArtistId()).orElseThrow(
+          () -> new ResourceNotFoundException("Artist not found with id " + req.getArtistId()));
       s.setArtist(artist);
     }
-    if (req.albumId != null) {
-      var album = albumRepository.findById(req.albumId).orElseThrow(
-          () -> new ResourceNotFoundException("Album not found with id " + req.albumId));
+    if (req.getAlbumId() != null) {
+      var album = albumRepository.findById(req.getAlbumId()).orElseThrow(
+          () -> new ResourceNotFoundException("Album not found with id " + req.getAlbumId()));
       s.setAlbum(album);
     }
 
