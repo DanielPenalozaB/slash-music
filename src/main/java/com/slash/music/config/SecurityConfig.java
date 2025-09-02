@@ -78,6 +78,11 @@ public class SecurityConfig {
         // General user endpoints - require authentication
         .requestMatchers("/api/v1/users/**").authenticated()
 
+        // Artist endpoints - require authentication
+        // TODO: Add role based access control for artist endpoints
+        .requestMatchers("/api/v1/artists/**").authenticated()
+        .requestMatchers("/api/v1/artists/search/**").authenticated()
+
         // All other endpoints require authentication
         .anyRequest().authenticated())
       .authenticationProvider(authenticationProvider())
