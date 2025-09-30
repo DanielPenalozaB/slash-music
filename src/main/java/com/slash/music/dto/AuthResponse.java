@@ -12,6 +12,5 @@ import lombok.NoArgsConstructor;
 public class AuthResponse {
   private String accessToken;
   private String refreshToken;
-  private final String TokenType = "Bearer";
   private UserResponseDTO user;
 }
