@@ -36,6 +36,7 @@ dependencies {
 	implementation 'org.flywaydb:flyway-database-postgresql'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
 	// JWT dependencies
 	implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
