@@ -1,12 +1,10 @@
-version: '3'
-
 services:
   db:
     image: postgres:13
     environment:
       - POSTGRES_DB=slash_db
       - POSTGRES_USER=slash_db_user
-      - POSTGRES_PASSWORD=slash_db_password
+      - POSTGRES_PASSWORD=SlashMusic2025*.
     ports:
       - "5432:5432"
     volumes:
